@@ -1,7 +1,5 @@
-# You import all the IOs of your board
 import board
 import busio
-# These are imports from the kmk library
 from adafruit_mcp230xx.mcp23017 import MCP23017
 from kmk.kmk_keyboard import KMKKeyboard
 from kmk.scanners.keypad import KeysScanner
@@ -10,6 +8,7 @@ from kmk.modules.encoder import EncoderHandler
 from kmk.modules.macros import Press, Release, Tap, Macros
 from kmk.extensions.media_keys import MediaKeys
 from kmk.handlers.sequences import simple_key_sequence
+import time
 
 # Keyboard stuff
 i2c = busio.I2C(scl=board.SCL, sda=board.SDA, frequency=100000)
@@ -19,13 +18,45 @@ keyboard = KMKKeyboard()
 # Add the media keys extension
 keyboard.extensions.append(MediaKeys())
 
-# Encoder Configuration
+# Encoder state tracking for app switching
+last_encoder_turn_time = 0
+alt_held = False
 encoder_handler = EncoderHandler()
-encoder_handler.pins = ((mcp.get_pin(9), mcp.get_pin(10), mcp.get_pin(8)), (mcp.get_pin(12), mcp.get_pin(13), mcp.get_pin(11)))  # Define pins for encoders
+
+def app_switch_encoder(encoder_state, delta):
+    global last_encoder_turn_time, alt_held
+    current_time = time.monotonic()
+    
+    if encoder_state.pressed:
+        keyboard.tap_key(KC.LALT(KC.TAB))
+        time.sleep(0.06)  # 60ms delay
+        keyboard.release_key(KC.LALT, KC.TAB)
+    else:
+        if not alt_held:
+            keyboard.press_key(KC.LALT, KC.TAB)
+            time.sleep(0.06)
+            keyboard.release_key(KC.TAB)
+            alt_held = True
+        
+        if delta > 0:
+            keyboard.tap_key(KC.RIGHT)  # Move right in app switcher
+        elif delta < 0:
+            keyboard.tap_key(KC.LEFT)  # Move left in app switcher
+        
+        last_encoder_turn_time = current_time
+
+def check_alt_release():
+    global last_encoder_turn_time, alt_held
+    current_time = time.monotonic()
+    if alt_held and (current_time - last_encoder_turn_time > 1):
+        keyboard.release_key(KC.LALT)
+        alt_held = False
+
 encoder_handler.map = [
     (KC.VOLU, KC.VOLD, KC.MUTE),  # Encoder 1 - Volume Control
-    (KC.LCTRL(KC.MINUS), KC.LCTRL(KC.EQUAL), KC.NO)  # Encoder 2 - App Switching
+    app_switch_encoder  # Encoder 2 - App Switching
 ]
+
 keyboard.modules.append(encoder_handler)
 
 # Add the macro extension
