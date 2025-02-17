@@ -9,6 +9,7 @@ from kmk.modules.macros import Press, Release, Tap, Macros
 from kmk.extensions.media_keys import MediaKeys
 from kmk.handlers.sequences import simple_key_sequence
 import time
+import neopixel
 
 # Keyboard stuff
 i2c = busio.I2C(scl=board.SCL, sda=board.SDA, frequency=100000)
@@ -84,10 +85,54 @@ OPEN_VMWARE = simple_key_sequence((KC.LGUI(KC.R), KC.MACRO_SLEEP_MS(100), KC.COP
 OPEN_CHROME = simple_key_sequence((KC.LGUI(KC.R), KC.MACRO_SLEEP_MS(100), KC.COPY("chrome"), KC.ENTER))
 OPEN_SPOTIFY = simple_key_sequence((KC.LGUI(KC.R), KC.MACRO_SLEEP_MS(100), KC.COPY("spotify"), KC.ENTER))
 
+# Initialize NeoPixels
+pixels = neopixel.NeoPixel(board.D6, 2, brightness=0.5, auto_write=False)
+
+def fade_leds():
+    for i in range(2):
+        # Fade in LED 1
+        for j in range(0, 256, 5):
+            pixels[0] = (j, j, j)
+            pixels.show()
+            time.sleep(0.004)
+        time.sleep(0.1)
+        
+        # Fade out LED 1
+        for j in range(255, -1, -5):
+            pixels[0] = (j, j, j)
+            pixels.show()
+            time.sleep(0.004)
+        time.sleep(0.04)
+        
+        # Fade in LED 2
+        for j in range(0, 256, 5):
+            pixels[1] = (j, j, j)
+            pixels.show()
+            time.sleep(0.004)
+        time.sleep(0.1)
+        
+        # Fade out LED 2
+        for j in range(255, -1, -5):
+            pixels[1] = (j, j, j)
+            pixels.show()
+            time.sleep(0.004)
+        time.sleep(0.04)
+
+
 # silly keymap
 keyboard.keymap = [
     [KC.MPRV, KC.MPLY, KC.MNXT, OPEN_VSCODE, OPEN_GITHUB, OPEN_TERMIUS, OPEN_KICAD, OPEN_FUSION360, OPEN_STEAM, OPEN_DISCORD, OPEN_NOTEPAD, OPEN_VMWARE, OPEN_CHROME, OPEN_SPOTIFY]
 ]
+
+# Override the process_key method to add LED fading on key press
+original_process_key = keyboard.process_key
+
+def process_key(key, is_pressed):
+    if is_pressed:
+        fade_leds()
+    return original_process_key(key, is_pressed)
+
+keyboard.process_key = process_key
 
 # Start kmk!
 if __name__ == '__main__':
