@@ -12,7 +12,7 @@ My next steps are probably to create a GUI and button editor app to make it easy
 
 ## 3D Model
 
-![3D Model](./cad/STLs/Hackpad%20-%20Full-with%20PCB.stl)
+![3D Model](https://viewscreen.githubusercontent.com/view/solid?url=https%3a%2f%2fraw.githubusercontent.com%2fskalnik%2fsecret-bear-clip%2fmaster%2fstl%2fclip.stl)
 
 ## Screenshots
 
