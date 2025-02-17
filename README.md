@@ -10,6 +10,16 @@ I spent ages trying to create the firmware after not knowing what I was doing. F
 
 My next steps are probably to create a GUI and button editor app to make it easy to assign custom commands.
 
+## Features:
+
+ * 16 Inputs!!! you heard me right!
+    * 2 EC11 Encoders
+    * 14 Cherry MX Switches
+ * A janky ahh PCB made by yours truly :3
+ * Media Controls
+ * A bunch of app opener keys thingys
+ * Custom FW (KMK)
+
 ## 3D Model
 [3D Model (Link to file)](./cad/STLs/Hackpad%20-%20Full-with%20PCB.stl)
 
@@ -36,7 +46,10 @@ My next steps are probably to create a GUI and button editor app to make it easy
 | XIAO-RP2040-DIP            | Seeed Studio XIAO RP2040                         | 1        |
 | MCP23017_SO                | I2C I/O Expander                                 | 1        |
 | PCB                        | [`My custom PCB`](./production/gerbers.zip)      | 3?       |
-| 3D Printed Case            | [`Top`](./production/Hackpad%20-%20Top%20Plate.stl) and [`Bottom`](./production/Hackpad%20-%20Case%20Base.stl)  | 1x Top 1x Bottom |
+| 3D Printed Case            | [`Top`](./production/Hackpad%20-%20Top%20Plate.stl) and [`Bottom`](./production/Hackpad%20-%20Case%20Base.stl) Color: Red if possible? (To match HC color)  | 1x Top 1x Bottom |
+| M3x16mm SHCS Bolts | Case bolts | 4 |
+| M3x8mm SHCS Bolts | PCB Screws | 4 |
+| Blank DSA Keycaps White | Black or white. Maybe 7x black 7x white? | 14 |
 
 ## License
 
