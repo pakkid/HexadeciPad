@@ -11,7 +11,7 @@ I spent ages trying to create the firmware after not knowing what I was doing. F
 My next steps are probably to create a GUI and button editor app to make it easy to assign custom commands.
 
 ## 3D Model
-['3D Model (Link to file)'](./cad/STLs/Hackpad%20-%20Full-with%20PCB.stl)
+[3D Model (Link to file)](./cad/STLs/Hackpad%20-%20Full-with%20PCB.stl)
 
 ## Screenshots
 
@@ -35,8 +35,8 @@ My next steps are probably to create a GUI and button editor app to make it easy
 | SW_Cherry_MX_1.00u_PCB     | Cherry MX keyswitch, 1.00u, PCB mount             | 14       |
 | XIAO-RP2040-DIP            | Seeed Studio XIAO RP2040                         | 1        |
 | MCP23017_SO                | I2C I/O Expander                                 | 1        |
-| PCB                        | ['My custom PCB'](./production/gerbers.zip)      | 3?       |
-| 3D Printed Case            | ['Top'](./production/Hackpad%20-%20Top%20Plate.stl) and ['Bottom'](./production/Hackpad%20-%20Case%20Base.stl)  | 1x Top 1x Bottom |
+| PCB                        | [`My custom PCB`](./production/gerbers.zip)      | 3?       |
+| 3D Printed Case            | [`Top`](./production/Hackpad%20-%20Top%20Plate.stl) and [`Bottom`](./production/Hackpad%20-%20Case%20Base.stl)  | 1x Top 1x Bottom |
 
 ## License
 
