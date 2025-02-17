@@ -16,13 +16,13 @@ My next steps are probably to create a GUI and button editor app to make it easy
 ## Screenshots
 
 ### Overall Hackpad
-![Overall Hackpad](images/overall_hackpad.png)
+![Overall Hackpad](images/overall_hackpad.png | width=200)
 
 ### Schematic
-![Schematic](images/schematic.png)
+![Schematic](images/schematic.png | width=200)
 
 ### PCB
-![PCB](images/pcb.png)
+![PCB](images/pcb.png | width=200)
 
 
 ## Bill of Materials (BOM)
