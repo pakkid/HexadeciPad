@@ -10,6 +10,10 @@ I spent ages trying to create the firmware after not knowing what I was doing. F
 
 My next steps are probably to create a GUI and button editor app to make it easy to assign custom commands.
 
+## 3D Model
+
+![3D Model](./cad/STLs/Hackpad%20-%20Full-with%20PCB.stl)
+
 ## Screenshots
 
 ### Overall Hackpad
